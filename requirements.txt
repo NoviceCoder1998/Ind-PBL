@@ -1,6 +1,4 @@
-project/
-│
-├── app.py                 # Streamlit dashboard
-├── Ind PBL.csv            # Dataset
-├── requirements.txt       # Python dependencies
-└── README.md              # Project overview
+streamlit
+pandas
+numpy
+plotly
