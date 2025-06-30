@@ -139,3 +139,7 @@ with tab5:
     fig15 = px.scatter(df_filtered, x="interest_rate_percent", y="revenue", color="country",
                        title="Interest Rate vs Revenue")
     st.plotly_chart(fig15, use_container_width=True)
+if 'product' in df.columns:
+    products = st.sidebar.multiselect("Select Products", options=df['product'].unique(), default=df['product'].unique())
+else:
+    st.sidebar.warning("⚠️ 'Product' column not found in the data.")
