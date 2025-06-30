@@ -27,17 +27,44 @@ st.markdown("This dashboard provides comprehensive macro and micro analysis of b
 # Load data
 df = load_data()
 
+# ✅ DEBUG: Display columns to ensure correct names
+st.write("📋 Columns in the DataFrame:", df.columns.tolist())
+
+
 # Sidebar filters
 st.sidebar.header("🔎 Filter Data")
 countries = st.sidebar.multiselect("Select Countries", options=df.country.unique(), default=df.country.unique())
-products = st.sidebar.multiselect("Select Products", options=df.product.unique(), default=df.product.unique())
+# Sidebar filters
+st.sidebar.header("🔎 Filter Data")
+
+# Safe country filter
+if "country" in df.columns:
+    countries = st.sidebar.multiselect("Select Countries", options=df["country"].unique(), default=df["country"].unique())
+else:
+    countries = []
+    st.sidebar.warning("⚠️ 'country' column not found in data.")
+
+# Safe product filter
+if "product" in df.columns:
+    products = st.sidebar.multiselect("Select Products", options=df["product"].unique(), default=df["product"].unique())
+else:
+    products = []
+    st.sidebar.warning("⚠️ 'product' column not found in data.")
+
+# Safe branch filter
+if "branch" in df.columns:
+    branches = st.sidebar.multiselect("Select Branches", options=df["branch"].unique(), default=df["branch"].unique())
+else:
+    branches = []
+    st.sidebar.warning("⚠️ 'branch' column not found in data.")
+
 branches = st.sidebar.multiselect("Select Branches", options=df.branch.unique(), default=df.branch.unique())
 
 # Filter dataset
 df_filtered = df[
-    (df.country.isin(countries)) &
-    (df.product.isin(products)) &
-    (df.branch.isin(branches))
+    df["country"].isin(countries) &
+    df["product"].isin(products) &
+    df["branch"].isin(branches)
 ]
 
 # Overview KPIs
