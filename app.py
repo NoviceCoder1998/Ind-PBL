@@ -33,7 +33,27 @@ st.write("📋 Columns in the DataFrame:", df.columns.tolist())
 
 # Sidebar filters
 st.sidebar.header("🔎 Filter Data")
-countries = st.sidebar.multiselect("Select Countries", options=df.country.unique(), default=df.country.unique())
+countries = st.sidebar.multiselect(
+    "Select Countries", 
+    options=df["country"].unique(), 
+    default=df["country"].unique(), 
+    key="countries_selector"
+)
+
+products = st.sidebar.multiselect(
+    "Select Products", 
+    options=df["product"].unique(), 
+    default=df["product"].unique(), 
+    key="products_selector"
+)
+
+branches = st.sidebar.multiselect(
+    "Select Branches", 
+    options=df["branch"].unique(), 
+    default=df["branch"].unique(), 
+    key="branches_selector"
+)
+
 # Sidebar filters
 st.sidebar.header("🔎 Filter Data")
 
