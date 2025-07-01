@@ -54,8 +54,6 @@ branches = st.sidebar.multiselect(
     key="branches_selector"
 )
 
-# Sidebar filters
-st.sidebar.header("🔎 Filter Data")
 
 # Safe country filter
 if "country" in df.columns:
