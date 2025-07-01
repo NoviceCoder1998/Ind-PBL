@@ -55,28 +55,7 @@ branches = st.sidebar.multiselect(
 )
 
 
-# Safe country filter
-if "country" in df.columns:
-    countries = st.sidebar.multiselect("Select Countries", options=df["country"].unique(), default=df["country"].unique())
-else:
-    countries = []
-    st.sidebar.warning("⚠️ 'country' column not found in data.")
 
-# Safe product filter
-if "product" in df.columns:
-    products = st.sidebar.multiselect("Select Products", options=df["product"].unique(), default=df["product"].unique())
-else:
-    products = []
-    st.sidebar.warning("⚠️ 'product' column not found in data.")
-
-# Safe branch filter
-if "branch" in df.columns:
-    branches = st.sidebar.multiselect("Select Branches", options=df["branch"].unique(), default=df["branch"].unique())
-else:
-    branches = []
-    st.sidebar.warning("⚠️ 'branch' column not found in data.")
-
-branches = st.sidebar.multiselect("Select Branches", options=df.branch.unique(), default=df.branch.unique())
 
 # Filter dataset
 df_filtered = df[
